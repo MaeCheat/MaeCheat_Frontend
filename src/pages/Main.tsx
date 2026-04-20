@@ -1,8 +1,7 @@
 import { useState } from "react";
+import axiosInstance from "../api/axios-instance";
 
-const API_BASE = "http://localhost:8080";
-
-const Home = () => {
+const Main = () => {
   const [nickname, setNickname] = useState("");
   const [characterImage, setCharacterImage] = useState<string | null>(null);
   const [characterName, setCharacterName] = useState<string | null>(null);
@@ -17,13 +16,9 @@ const Home = () => {
     setCharacterImage(null);
 
     try {
-      const res = await fetch(
-        `${API_BASE}/characters/basic?nickname=${encodeURIComponent(nickname)}`,
-      );
-
-      if (!res.ok) throw new Error("캐릭터를 찾을 수 없습니다.");
-
-      const data = await res.json();
+      const { data } = await axiosInstance.get("/characters/basic", {
+        params: { nickname },
+      });
       setCharacterImage(data.character_image);
       setCharacterName(data.character_name);
     } catch (e) {
@@ -69,4 +64,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Main;
