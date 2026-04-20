@@ -24,8 +24,8 @@ const Home = () => {
       if (!res.ok) throw new Error("캐릭터를 찾을 수 없습니다.");
 
       const data = await res.json();
-      setCharacterImage(data.characterImage);
-      setCharacterName(data.characterName);
+      setCharacterImage(data.character_image);
+      setCharacterName(data.character_name);
     } catch (e) {
       setError(e instanceof Error ? e.message : "알 수 없는 오류");
     } finally {
