@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axiosInstance from "../api/axios-instance";
+import { getCharacterBasic } from "../api/maple-character-api";
 
 const Main = () => {
   const [nickname, setNickname] = useState("");
@@ -16,9 +16,7 @@ const Main = () => {
     setCharacterImage(null);
 
     try {
-      const { data } = await axiosInstance.get("/characters/basic", {
-        params: { nickname },
-      });
+      const data = await getCharacterBasic({ nickname });
       setCharacterImage(data.character_image);
       setCharacterName(data.character_name);
     } catch (e) {
