@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getCharacterBasic } from "../api/maple-character-api";
 
-const Main = () => {
+const Home = () => {
   const [nickname, setNickname] = useState("");
   const [characterImage, setCharacterImage] = useState<string | null>(null);
   const [characterName, setCharacterName] = useState<string | null>(null);
@@ -62,4 +62,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Home;
