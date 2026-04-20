@@ -1,29 +1,17 @@
 import { useState } from "react";
 import { getCharacterBasic } from "../api/maple-character-api";
+import { useMutation } from "@tanstack/react-query";
 
 const Home = () => {
   const [nickname, setNickname] = useState("");
-  const [characterImage, setCharacterImage] = useState<string | null>(null);
-  const [characterName, setCharacterName] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const handleSearch = async () => {
+  const { data, isPending, error, mutate } = useMutation({
+    mutationFn: getCharacterBasic,
+  });
+
+  const handleSearch = () => {
     if (!nickname.trim()) return;
-
-    setLoading(true);
-    setError(null);
-    setCharacterImage(null);
-
-    try {
-      const data = await getCharacterBasic({ nickname });
-      setCharacterImage(data.character_image);
-      setCharacterName(data.character_name);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "알 수 없는 오류");
-    } finally {
-      setLoading(false);
-    }
+    mutate({ nickname });
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -43,19 +31,19 @@ const Home = () => {
         />
         <button
           onClick={handleSearch}
-          disabled={loading}
+          disabled={isPending}
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
         >
-          {loading ? "검색 중..." : "검색"}
+          {isPending ? "검색 중..." : "검색"}
         </button>
       </div>
 
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="text-red-500">{error.message}</p>}
 
-      {characterImage && (
+      {data && (
         <div className="flex flex-col items-center gap-2">
-          <img src={characterImage} alt={characterName ?? "캐릭터"} />
-          <p className="text-lg font-semibold">{characterName}</p>
+          <img src={data.characterImage} alt={data.characterName ?? "캐릭터"} />
+          <p className="text-lg font-semibold">{data.characterName}</p>
         </div>
       )}
     </div>
