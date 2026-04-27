@@ -1,4 +1,5 @@
 import { useState } from "react";
+import logo from "../../assets/logo.png";
 import { useCharacterSearch } from "../../hooks/useCharacterSearch";
 
 const Home = () => {
@@ -16,7 +17,8 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-bg-secondary flex flex-col items-center justify-center px-4">
-      <div className="mb-10 text-center">
+      <div className="mb-10 text-center flex flex-col items-center">
+        <img src={logo} alt="MaeCheat" className="w-16 h-16 mb-4" />
         <h1 className="text-4xl font-bold text-primary tracking-tight">
           MaeCheat
         </h1>
@@ -45,9 +47,7 @@ const Home = () => {
         </div>
 
         {error && (
-          <p className="mt-3 text-sm text-error text-center">
-            {error.message}
-          </p>
+          <p className="mt-3 text-sm text-error text-center">{error.message}</p>
         )}
       </div>
     </div>

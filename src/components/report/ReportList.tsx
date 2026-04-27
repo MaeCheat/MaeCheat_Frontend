@@ -36,16 +36,16 @@ const ReportList = ({ reports, isLoading, error }: ReportListProps) => {
       {reports.map((report) => (
         <a
           key={report.id}
-          href={report.source_url}
+          href={report.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="block bg-bg-primary rounded-xl border border-border/50 p-4 hover:border-primary/30 hover:shadow-sm transition-all"
+          className="block bg-bg-primary rounded-xl border border-border/50 p-4 hover:border-primary/30 hover:shadow-sm transition-all cursor-pointer"
         >
           <p className="text-sm font-medium text-text-primary">
             {report.title}
           </p>
           <p className="text-xs text-text-muted mt-1 truncate">
-            {report.source_url}
+            {report.sourceUrl}
           </p>
         </a>
       ))}

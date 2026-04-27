@@ -1,6 +1,6 @@
 export interface Report {
   id: number;
-  source_url: string;
+  sourceUrl: string;
   title: string;
   content: string;
 }

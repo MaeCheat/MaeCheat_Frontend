@@ -7,11 +7,11 @@ interface CharacterCardProps {
 const CharacterCard = ({ character }: CharacterCardProps) => {
   return (
     <div className="bg-bg-primary rounded-2xl border border-border/50 shadow-sm p-6 flex items-center gap-5">
-      <div className="w-24 h-24 rounded-xl bg-bg-tertiary flex items-center justify-center overflow-hidden shrink-0">
+      <div className="w-40 h-40 shrink-0 flex items-center justify-center overflow-hidden">
         <img
           src={character.character_image}
           alt={character.character_name}
-          className="w-full h-full object-contain"
+          className="scale-250"
         />
       </div>
       <div>
