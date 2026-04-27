@@ -1,11 +1,13 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useReportsQuery, useCreateReport } from "../../hooks/useReports";
+import { useToast } from "../../hooks/useToast";
 import Header from "../../components/common/Header";
 import CharacterCard from "../../components/character/CharacterCard";
 import AiSummary from "../../components/report/AiSummary";
 import ReportForm from "../../components/report/ReportForm";
 import ReportList from "../../components/report/ReportList";
+import ToastContainer from "../../components/common/ToastContainer";
 
 const CharacterDetail = () => {
   const location = useLocation();
@@ -13,13 +15,18 @@ const CharacterDetail = () => {
   const character = location.state?.character;
 
   const [showForm, setShowForm] = useState(false);
+  const { toasts, addToast, removeToast } = useToast();
 
   const nickname = character?.character_name ?? "";
 
   const { data: reports, isLoading, error } = useReportsQuery(nickname);
   const { mutate: submitReport, isPending: isSubmitting } = useCreateReport(
     nickname,
-    () => setShowForm(false)
+    () => {
+      setShowForm(false);
+      addToast("게시글이 등록되었습니다.", "success");
+    },
+    (message) => addToast(message, "error")
   );
 
   if (!character) {
@@ -40,6 +47,7 @@ const CharacterDetail = () => {
 
   return (
     <div className="min-h-screen bg-bg-secondary">
+      <ToastContainer toasts={toasts} onRemove={removeToast} />
       <Header showBack />
 
       <div className="max-w-2xl mx-auto px-4 py-8">

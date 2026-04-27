@@ -9,7 +9,11 @@ export const useReportsQuery = (nickname: string) => {
   });
 };
 
-export const useCreateReport = (nickname: string, onSuccess?: () => void) => {
+export const useCreateReport = (
+  nickname: string,
+  onSuccess?: () => void,
+  onError?: (message: string) => void
+) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -17,6 +21,11 @@ export const useCreateReport = (nickname: string, onSuccess?: () => void) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["reports", nickname] });
       onSuccess?.();
+    },
+    onError: (error: any) => {
+      const message =
+        error.response?.data?.message ?? "게시글 등록에 실패했습니다.";
+      onError?.(message);
     },
   });
 };
