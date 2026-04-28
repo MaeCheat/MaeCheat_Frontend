@@ -3,4 +3,8 @@ export interface Report {
   sourceUrl: string;
   title: string;
   content: string;
+  upvotes: number;
+  downvotes: number;
+  score: number;
+  hidden: boolean;
 }

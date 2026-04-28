@@ -1,5 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getReports, createReport } from "../api/report-api";
+import {
+  getReports,
+  createReport,
+  upvoteReport,
+  downvoteReport,
+} from "../api/report-api";
 
 export const useReportsQuery = (nickname: string) => {
   return useQuery({
@@ -7,6 +12,26 @@ export const useReportsQuery = (nickname: string) => {
     queryFn: () => getReports(nickname),
     enabled: !!nickname,
   });
+};
+
+export const useVote = (nickname: string) => {
+  const queryClient = useQueryClient();
+
+  const upvote = useMutation({
+    mutationFn: (reportId: number) => upvoteReport(nickname, reportId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["reports", nickname] });
+    },
+  });
+
+  const downvote = useMutation({
+    mutationFn: (reportId: number) => downvoteReport(nickname, reportId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["reports", nickname] });
+    },
+  });
+
+  return { upvote: upvote.mutate, downvote: downvote.mutate };
 };
 
 export const useCreateReport = (

@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useReportsQuery, useCreateReport } from "../../hooks/useReports";
+import { useReportsQuery, useCreateReport, useVote } from "../../hooks/useReports";
 import { useToast } from "../../hooks/useToast";
 import Header from "../../components/common/Header";
 import CharacterCard from "../../components/character/CharacterCard";
@@ -20,6 +20,7 @@ const CharacterDetail = () => {
   const nickname = character?.character_name ?? "";
 
   const { data: reports, isLoading, error } = useReportsQuery(nickname);
+  const { upvote, downvote } = useVote(nickname);
   const { mutate: submitReport, isPending: isSubmitting } = useCreateReport(
     nickname,
     () => {
@@ -80,6 +81,8 @@ const CharacterDetail = () => {
             reports={reports ?? []}
             isLoading={isLoading}
             error={error}
+            onUpvote={upvote}
+            onDownvote={downvote}
           />
         </div>
       </div>
