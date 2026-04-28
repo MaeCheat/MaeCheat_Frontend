@@ -49,46 +49,51 @@ const CharacterDetail = () => {
     <div className="min-h-screen bg-bg-secondary">
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 
-      <div className="max-w-2xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8">
         <button
           onClick={() => navigate("/")}
-          className="flex items-center gap-1 text-sm text-text-muted hover:text-primary transition-colors cursor-pointer mb-4"
+          className="flex items-center gap-1 text-sm text-text-muted hover:text-primary transition-colors cursor-pointer mb-6"
         >
           <span>&larr;</span>
           <span className="font-pixel">MaeCheat</span>
         </button>
-        <CharacterCard character={character} />
 
-        {character.ai_summary && <AiSummary summary={character.ai_summary} />}
-
-        <div className="mt-8">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-text-primary">
-              관련 게시글
-            </h2>
+        <div className="flex gap-6 items-start">
+          {/* 좌측: 캐릭터 정보 */}
+          <div className="w-72 shrink-0 sticky top-8">
+            <p className="text-sm font-medium text-text-muted mb-2">캐릭터 정보</p>
+            <CharacterCard character={character} />
+            {character.ai_summary && <AiSummary summary={character.ai_summary} />}
             <button
               onClick={() => setShowForm(!showForm)}
-              className="w-9 h-9 rounded-lg bg-primary text-text-inverse flex items-center justify-center hover:bg-primary-hover active:bg-primary-active transition-colors text-xl leading-none cursor-pointer"
+              className="w-full mt-3 py-2.5 rounded-xl bg-primary text-text-inverse text-sm font-medium hover:bg-primary-hover active:bg-primary-active transition-colors cursor-pointer"
             >
-              {showForm ? "×" : "+"}
+              {showForm ? "등록 취소" : "+ 게시글 등록"}
             </button>
           </div>
 
-          {showForm && (
-            <ReportForm
-              onSubmit={submitReport}
-              isSubmitting={isSubmitting}
-              onCancel={() => setShowForm(false)}
-            />
-          )}
+          {/* 우측: 게시글 영역 */}
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium text-text-muted mb-2">
+              관련 게시글
+            </p>
 
-          <ReportList
-            reports={reports ?? []}
-            isLoading={isLoading}
-            error={error}
-            onUpvote={upvote}
-            onDownvote={downvote}
-          />
+            {showForm && (
+              <ReportForm
+                onSubmit={submitReport}
+                isSubmitting={isSubmitting}
+                onCancel={() => setShowForm(false)}
+              />
+            )}
+
+            <ReportList
+              reports={reports ?? []}
+              isLoading={isLoading}
+              error={error}
+              onUpvote={upvote}
+              onDownvote={downvote}
+            />
+          </div>
         </div>
       </div>
     </div>
