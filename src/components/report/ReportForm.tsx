@@ -16,7 +16,7 @@ const ReportForm = ({ onSubmit, isSubmitting, onCancel }: ReportFormProps) => {
   };
 
   return (
-    <div className="mb-4 bg-bg-primary rounded-xl border border-border/50 p-4">
+    <div className="bg-bg-primary rounded-xl border border-border/50 p-4">
       <div className="flex items-center justify-between mb-2">
         <p className="text-sm font-medium text-text-primary">게시글 링크 등록</p>
         <button

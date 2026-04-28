@@ -65,14 +65,23 @@ const CharacterDetail = () => {
           {/* 좌측: 캐릭터 정보 */}
           <div className="w-72 shrink-0 sticky top-8">
             <p className="text-sm font-medium text-text-muted mb-2">캐릭터 정보</p>
-            <CharacterCard character={character} />
-            {character.ai_summary && <AiSummary summary={character.ai_summary} />}
-            <button
-              onClick={() => setShowForm(!showForm)}
-              className="w-full mt-3 py-2.5 rounded-xl bg-primary text-text-inverse text-sm font-medium hover:bg-primary-hover active:bg-primary-active transition-colors cursor-pointer"
-            >
-              {showForm ? "등록 취소" : "+ 게시글 등록"}
-            </button>
+            <div className="flex flex-col gap-3">
+              <CharacterCard character={character} />
+              {character.ai_summary && <AiSummary summary={character.ai_summary} />}
+              <button
+                onClick={() => setShowForm(!showForm)}
+                className="w-full py-2.5 rounded-xl bg-primary text-text-inverse text-sm font-medium hover:bg-primary-hover active:bg-primary-active transition-colors cursor-pointer"
+              >
+                {showForm ? "등록 취소" : "+ 게시글 등록"}
+              </button>
+              {showForm && (
+                <ReportForm
+                  onSubmit={submitReport}
+                  isSubmitting={isSubmitting}
+                  onCancel={() => setShowForm(false)}
+                />
+              )}
+            </div>
           </div>
 
           {/* 우측: 게시글 영역 */}
@@ -80,14 +89,6 @@ const CharacterDetail = () => {
             <p className="text-sm font-medium text-text-muted mb-2">
               관련 게시글
             </p>
-
-            {showForm && (
-              <ReportForm
-                onSubmit={submitReport}
-                isSubmitting={isSubmitting}
-                onCancel={() => setShowForm(false)}
-              />
-            )}
 
             <ReportList
               reports={reports}
