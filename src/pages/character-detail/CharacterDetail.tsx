@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useReportsQuery, useCreateReport, useVote } from "../../hooks/useReports";
 import { useToast } from "../../hooks/useToast";
-import Header from "../../components/common/Header";
 import CharacterCard from "../../components/character/CharacterCard";
 import AiSummary from "../../components/report/AiSummary";
 import ReportForm from "../../components/report/ReportForm";
@@ -49,9 +48,15 @@ const CharacterDetail = () => {
   return (
     <div className="min-h-screen bg-bg-secondary">
       <ToastContainer toasts={toasts} onRemove={removeToast} />
-      <Header showBack />
 
       <div className="max-w-2xl mx-auto px-4 py-8">
+        <button
+          onClick={() => navigate("/")}
+          className="flex items-center gap-1 text-sm text-text-muted hover:text-primary transition-colors cursor-pointer mb-4"
+        >
+          <span>&larr;</span>
+          <span className="font-pixel">MaeCheat</span>
+        </button>
         <CharacterCard character={character} />
 
         {character.ai_summary && <AiSummary summary={character.ai_summary} />}
