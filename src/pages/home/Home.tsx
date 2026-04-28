@@ -23,7 +23,7 @@ const Home = () => {
           MaeCheat
         </h1>
         <p className="mt-2 text-text-secondary text-sm font-pixel">
-          메이플스토리 캐릭터 정보 조회
+          메이플스토리 캐릭터 평판 조회
         </p>
       </div>
 
