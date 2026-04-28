@@ -6,7 +6,7 @@ interface CharacterCardProps {
 
 const CharacterCard = ({ character }: CharacterCardProps) => {
   return (
-    <div className="bg-bg-primary rounded-2xl border border-border/50 shadow-sm p-5 flex flex-col items-center text-center">
+    <div className="bg-bg-primary rounded-2xl border-2 border-secondary p-5 flex flex-col items-center text-center">
       <div className="w-32 h-32 flex items-center justify-center overflow-hidden">
         <img
           src={character.character_image}
