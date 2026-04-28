@@ -1,8 +1,5 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useCharacterQuery } from "../../hooks/useCharacterQuery";
-import { useReportsQuery, useCreateReport, useVote } from "../../hooks/useReports";
-import { useToast } from "../../hooks/useToast";
+import { useNavigate } from "react-router-dom";
+import { useCharacterDetail } from "./useCharacterDetail";
 import CharacterCard from "../../components/character/CharacterCard";
 import AiSummary from "../../components/report/AiSummary";
 import ReportForm from "../../components/report/ReportForm";
@@ -10,24 +7,22 @@ import ReportList from "../../components/report/ReportList";
 import ToastContainer from "../../components/common/ToastContainer";
 
 const CharacterDetail = () => {
-  const { name: encodedNickname } = useParams<{ name: string }>();
-  const nickname = decodeURIComponent(encodedNickname ?? "");
   const navigate = useNavigate();
-
-  const [showForm, setShowForm] = useState(false);
-  const { toasts, addToast, removeToast } = useToast();
-
-  const { data: character, isLoading: isCharacterLoading } = useCharacterQuery(nickname);
-  const { data: reports, isLoading, error } = useReportsQuery(nickname);
-  const { upvote, downvote } = useVote(nickname);
-  const { mutate: submitReport, isPending: isSubmitting } = useCreateReport(
-    nickname,
-    () => {
-      setShowForm(false);
-      addToast("게시글이 등록되었습니다.", "success");
-    },
-    (message) => addToast(message, "error")
-  );
+  const {
+    character,
+    isCharacterLoading,
+    reports,
+    isReportsLoading,
+    reportsError,
+    upvote,
+    downvote,
+    showForm,
+    setShowForm,
+    submitReport,
+    isSubmitting,
+    toasts,
+    removeToast,
+  } = useCharacterDetail();
 
   if (isCharacterLoading) {
     return (
@@ -95,9 +90,9 @@ const CharacterDetail = () => {
             )}
 
             <ReportList
-              reports={reports ?? []}
-              isLoading={isLoading}
-              error={error}
+              reports={reports}
+              isLoading={isReportsLoading}
+              error={reportsError}
               onUpvote={upvote}
               onDownvote={downvote}
             />
