@@ -1,5 +1,6 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useCharacterQuery } from "../../hooks/useCharacterQuery";
 import { useReportsQuery, useCreateReport, useVote } from "../../hooks/useReports";
 import { useToast } from "../../hooks/useToast";
 import CharacterCard from "../../components/character/CharacterCard";
@@ -9,15 +10,14 @@ import ReportList from "../../components/report/ReportList";
 import ToastContainer from "../../components/common/ToastContainer";
 
 const CharacterDetail = () => {
-  const location = useLocation();
+  const { name: encodedNickname } = useParams<{ name: string }>();
+  const nickname = decodeURIComponent(encodedNickname ?? "");
   const navigate = useNavigate();
-  const character = location.state?.character;
 
   const [showForm, setShowForm] = useState(false);
   const { toasts, addToast, removeToast } = useToast();
 
-  const nickname = character?.character_name ?? "";
-
+  const { data: character, isLoading: isCharacterLoading } = useCharacterQuery(nickname);
   const { data: reports, isLoading, error } = useReportsQuery(nickname);
   const { upvote, downvote } = useVote(nickname);
   const { mutate: submitReport, isPending: isSubmitting } = useCreateReport(
@@ -28,6 +28,14 @@ const CharacterDetail = () => {
     },
     (message) => addToast(message, "error")
   );
+
+  if (isCharacterLoading) {
+    return (
+      <div className="min-h-screen bg-bg-secondary flex items-center justify-center">
+        <p className="text-text-secondary">캐릭터 정보를 불러오는 중...</p>
+      </div>
+    );
+  }
 
   if (!character) {
     return (
