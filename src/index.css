@@ -1,6 +1,8 @@
 @import "tailwindcss";
+@import "galmuri/dist/galmuri.css";
 
 @theme {
+  --font-pixel: "Galmuri11", monospace;
   /* Primary */
   --color-primary: #12345c;
   --color-primary-light: #1a4a80;

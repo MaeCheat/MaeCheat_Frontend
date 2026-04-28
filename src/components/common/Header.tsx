@@ -18,7 +18,7 @@ const Header = ({ showBack = false }: HeaderProps) => {
             &larr;
           </button>
         )}
-        <h1 className="text-lg font-bold text-primary">MaeCheat</h1>
+        <h1 className="text-lg font-bold text-primary font-pixel">MaeCheat</h1>
       </div>
     </header>
   );
