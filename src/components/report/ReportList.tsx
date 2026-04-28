@@ -20,7 +20,7 @@ const ReportList = ({
 
   if (isLoading) {
     return (
-      <p className="text-sm text-text-muted text-center py-8">
+      <p className="text-sm text-white/40 text-center py-8">
         불러오는 중...
       </p>
     );
@@ -28,7 +28,7 @@ const ReportList = ({
 
   if (error) {
     return (
-      <p className="text-sm text-error text-center py-8">
+      <p className="text-sm text-red-400 text-center py-8">
         게시글을 불러올 수 없습니다.
       </p>
     );
@@ -37,7 +37,7 @@ const ReportList = ({
   if (!reports || reports.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-text-muted text-sm">등록된 게시글이 없습니다.</p>
+        <p className="text-white/40 text-sm">등록된 게시글이 없습니다.</p>
       </div>
     );
   }
@@ -60,7 +60,7 @@ const ReportList = ({
         <div className="mt-2">
           <button
             onClick={() => setShowHidden(!showHidden)}
-            className="text-xs text-text-muted hover:text-text-secondary cursor-pointer"
+            className="text-xs text-white/40 hover:text-white/60 cursor-pointer"
           >
             {showHidden
               ? "숨겨진 게시글 접기"
@@ -101,7 +101,7 @@ const ReportItem = ({
 }: ReportItemProps) => {
   return (
     <div
-      className={`bg-bg-primary rounded-xl border border-border/50 p-4 transition-all ${
+      className={`glass-card rounded-2xl p-5 transition-all ${
         dimmed ? "opacity-50" : ""
       }`}
     >
@@ -109,31 +109,31 @@ const ReportItem = ({
         href={report.sourceUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="block hover:text-primary transition-colors cursor-pointer"
+        className="block hover:text-accent transition-colors cursor-pointer"
       >
-        <p className="text-sm font-medium text-text-primary">{report.title}</p>
-        <p className="text-xs text-text-muted mt-1 truncate">
+        <p className="text-sm font-semibold text-white">{report.title}</p>
+        <p className="text-xs text-white/30 mt-1 truncate">
           {report.sourceUrl}
         </p>
       </a>
 
-      <div className="mt-3 flex items-center justify-between border-t border-border/30 pt-3">
-        <p className="text-xs text-text-muted">이 게시글이 도움이 되었나요?</p>
+      <div className="mt-3 flex items-center justify-between border-t border-white/[0.08] pt-3">
+        <p className="text-xs text-white/40">이 게시글이 도움이 되었나요?</p>
         <div className="flex items-center gap-2">
           <button
             onClick={() => onUpvote(report.id)}
-            className="flex items-center gap-1 px-2 py-1 rounded-md text-xs text-text-secondary hover:bg-success/10 transition-colors cursor-pointer"
+            className="flex items-center gap-1 px-2 py-1 rounded-md text-xs text-emerald-400 hover:bg-emerald-400/10 transition-colors cursor-pointer"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2d8a4e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7 10v12" /><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z" />
             </svg>
             <span>{report.upvotes}</span>
           </button>
           <button
             onClick={() => onDownvote(report.id)}
-            className="flex items-center gap-1 px-2 py-1 rounded-md text-xs text-text-secondary hover:bg-error/10 transition-colors cursor-pointer"
+            className="flex items-center gap-1 px-2 py-1 rounded-md text-xs text-red-400 hover:bg-red-400/10 transition-colors cursor-pointer"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d42b2b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M17 14V2" /><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z" />
             </svg>
             <span>{report.downvotes}</span>

@@ -6,9 +6,9 @@ interface ToastContainerProps {
 }
 
 const typeStyles = {
-  error: "bg-error",
-  success: "bg-success",
-  info: "bg-info",
+  error: "bg-red-500/90",
+  success: "bg-emerald-500/90",
+  info: "bg-accent/90",
 };
 
 const ToastContainer = ({ toasts, onRemove }: ToastContainerProps) => {
@@ -19,12 +19,12 @@ const ToastContainer = ({ toasts, onRemove }: ToastContainerProps) => {
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className={`${typeStyles[toast.type]} text-text-inverse rounded-lg shadow-lg px-4 py-3 flex items-center justify-between gap-3 animate-slide-down`}
+          className={`${typeStyles[toast.type]} text-white rounded-lg shadow-lg backdrop-blur-sm px-4 py-3 flex items-center justify-between gap-3 animate-slide-down`}
         >
           <p className="text-sm">{toast.message}</p>
           <button
             onClick={() => onRemove(toast.id)}
-            className="text-text-inverse/70 hover:text-text-inverse text-lg leading-none cursor-pointer shrink-0"
+            className="text-white/70 hover:text-white text-lg leading-none cursor-pointer shrink-0"
           >
             ×
           </button>

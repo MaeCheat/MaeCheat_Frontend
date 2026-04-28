@@ -16,12 +16,12 @@ const ReportForm = ({ onSubmit, isSubmitting, onCancel }: ReportFormProps) => {
   };
 
   return (
-    <div className="bg-bg-primary rounded-xl border border-border/50 p-4">
+    <div className="glass-card rounded-xl p-4">
       <div className="flex items-center justify-between mb-2">
-        <p className="text-sm font-medium text-text-primary">게시글 링크 등록</p>
+        <p className="text-sm font-medium text-white">게시글 링크 등록</p>
         <button
           onClick={onCancel}
-          className="text-text-muted hover:text-text-primary text-sm cursor-pointer"
+          className="text-white/40 hover:text-white text-sm cursor-pointer"
         >
           취소
         </button>
@@ -33,12 +33,12 @@ const ReportForm = ({ onSubmit, isSubmitting, onCancel }: ReportFormProps) => {
           onChange={(e) => setSourceUrl(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
           placeholder="https://..."
-          className="flex-1 px-3 py-2 rounded-lg border border-border bg-bg-secondary text-text-primary text-sm placeholder:text-text-muted focus:outline-none focus:border-border-focus focus:ring-2 focus:ring-border-focus/20 transition-all"
+          className="flex-1 px-3 py-2 rounded-lg border border-white/10 bg-white/[0.06] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all"
         />
         <button
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="px-4 py-2 rounded-lg bg-primary text-text-inverse text-sm font-medium hover:bg-primary-hover disabled:bg-primary-disabled transition-colors cursor-pointer disabled:cursor-not-allowed"
+          className="px-4 py-2 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover disabled:opacity-50 transition-colors cursor-pointer disabled:cursor-not-allowed"
         >
           {isSubmitting ? "등록 중..." : "등록"}
         </button>
