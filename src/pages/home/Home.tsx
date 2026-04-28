@@ -20,7 +20,7 @@ const Home = () => {
       <div className="mb-10 text-center flex flex-col items-center">
         <img src={logo} alt="MaeCheat" className="w-16 h-16 mb-4" />
         <h1 className="text-4xl font-bold text-primary tracking-tight font-pixel">
-          MaeCheat
+          Mae<span className="text-accent">Cheat</span>
         </h1>
         <p className="mt-2 text-text-secondary text-sm font-pixel">
           메이플스토리 캐릭터 평판 조회
