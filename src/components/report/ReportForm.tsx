@@ -38,9 +38,9 @@ const ReportForm = ({ onSubmit, isSubmitting, onCancel }: ReportFormProps) => {
         <button
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="px-4 py-2 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover disabled:opacity-50 transition-colors cursor-pointer disabled:cursor-not-allowed"
+          className="w-16 py-2 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover disabled:opacity-50 transition-colors cursor-pointer disabled:cursor-not-allowed shrink-0 text-center"
         >
-          {isSubmitting ? "등록 중..." : "등록"}
+          {isSubmitting ? "..." : "등록"}
         </button>
       </div>
     </div>
