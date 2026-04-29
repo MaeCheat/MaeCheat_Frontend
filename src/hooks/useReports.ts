@@ -14,14 +14,24 @@ export const useReportsQuery = (nickname: string) => {
   });
 };
 
-export const useVote = (nickname: string) => {
+export const useVote = (
+  nickname: string,
+  onError?: (message: string) => void
+) => {
   const queryClient = useQueryClient();
+
+  const handleError = (error: any) => {
+    const message =
+      error.response?.data?.message ?? "추천 또는 비추천에 실패했습니다.";
+    onError?.(message);
+  };
 
   const upvote = useMutation({
     mutationFn: (reportId: number) => upvoteReport(nickname, reportId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["reports", nickname] });
     },
+    onError: handleError,
   });
 
   const downvote = useMutation({
@@ -29,6 +39,7 @@ export const useVote = (nickname: string) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["reports", nickname] });
     },
+    onError: handleError,
   });
 
   return { upvote: upvote.mutate, downvote: downvote.mutate };

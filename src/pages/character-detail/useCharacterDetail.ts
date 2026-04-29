@@ -17,7 +17,9 @@ export const useCharacterDetail = () => {
   const { data: reports, isLoading: isReportsLoading, error: reportsError } =
     useReportsQuery(nickname);
 
-  const { upvote, downvote } = useVote(nickname);
+  const { upvote, downvote } = useVote(nickname, (message) =>
+    addToast(message, "error"),
+  );
 
   const { mutate: submitReport, isPending: isSubmitting } = useCreateReport(
     nickname,
