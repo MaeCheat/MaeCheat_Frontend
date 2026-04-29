@@ -1,6 +1,7 @@
 import { useState } from "react";
 import logo from "../../assets/logo.png";
 import { useCharacterSearch } from "../../hooks/useCharacterSearch";
+import Footer from "../../components/common/Footer";
 
 const Home = () => {
   const [nickname, setNickname] = useState("");
@@ -61,6 +62,10 @@ const Home = () => {
         {error && (
           <p className="mt-4 text-sm text-red-400 text-center">{error.message}</p>
         )}
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0">
+        <Footer />
       </div>
     </div>
   );

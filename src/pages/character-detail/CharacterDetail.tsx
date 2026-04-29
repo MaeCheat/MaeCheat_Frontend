@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import CharacterSidebar from "../../components/character/CharacterSidebar";
 import DetailHeader from "../../components/common/DetailHeader";
+import Footer from "../../components/common/Footer";
 import ToastContainer from "../../components/common/ToastContainer";
 import ReportList from "../../components/report/ReportList";
 import { useCharacterDetail } from "./useCharacterDetail";
@@ -48,12 +49,12 @@ const CharacterDetail = () => {
   }
 
   return (
-    <div className="min-h-screen glass-page relative overflow-hidden">
+    <div className="min-h-screen glass-page relative overflow-hidden flex flex-col">
       <div className="glass-orb-1" />
       <div className="glass-orb-2" />
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 
-      <div className="relative max-w-5xl mx-auto px-4 py-8">
+      <div className="relative flex-1 max-w-5xl mx-auto px-4 py-8 w-full">
         <DetailHeader />
 
         <div className="flex gap-6 items-start">
@@ -80,6 +81,8 @@ const CharacterDetail = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
