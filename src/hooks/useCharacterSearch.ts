@@ -12,5 +12,10 @@ export const useCharacterSearch = () => {
         state: { character: data },
       });
     },
+    onError: (error: any) => {
+      const message =
+        error.response?.data?.message ?? "캐릭터 검색에 실패했습니다.";
+      error.message = message;
+    },
   });
 };
