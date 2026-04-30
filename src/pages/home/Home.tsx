@@ -17,7 +17,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen glass-page relative overflow-hidden flex flex-col items-center justify-center px-4">
+    <div className="min-h-dvh glass-page relative overflow-hidden flex flex-col items-center justify-center px-4">
       <div className="glass-orb-home-1" />
       <div className="glass-orb-home-2" />
 

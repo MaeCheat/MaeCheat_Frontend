@@ -26,7 +26,7 @@ const CharacterDetail = () => {
 
   if (isCharacterLoading) {
     return (
-      <div className="min-h-screen glass-page flex items-center justify-center">
+      <div className="min-h-dvh glass-page flex items-center justify-center">
         <p className="text-white/60">캐릭터 정보를 불러오는 중...</p>
       </div>
     );
@@ -34,7 +34,7 @@ const CharacterDetail = () => {
 
   if (!character) {
     return (
-      <div className="min-h-screen glass-page flex items-center justify-center">
+      <div className="min-h-dvh glass-page flex items-center justify-center">
         <div className="text-center">
           <p className="text-white/60 mb-4">캐릭터 정보가 없습니다.</p>
           <button
@@ -49,7 +49,7 @@ const CharacterDetail = () => {
   }
 
   return (
-    <div className="min-h-screen glass-page relative overflow-hidden flex flex-col">
+    <div className="min-h-dvh glass-page relative overflow-hidden flex flex-col">
       <div className="glass-orb-1" />
       <div className="glass-orb-2" />
       <ToastContainer toasts={toasts} onRemove={removeToast} />
