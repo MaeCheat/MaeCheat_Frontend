@@ -60,6 +60,16 @@
   }
 }
 
+html {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(232, 145, 58, 0.19), transparent 50%),
+    radial-gradient(circle at 80% 80%, #12345c, transparent 60%),
+    linear-gradient(180deg, #0a0e1a, #050810);
+  background-color: #050810;
+  background-attachment: fixed;
+}
+
 /* Glass Dark (상세 페이지) */
 .glass-page {
   background:
