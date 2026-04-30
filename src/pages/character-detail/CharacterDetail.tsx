@@ -68,7 +68,7 @@ const CharacterDetail = () => {
 
           <div className="flex-1 min-w-0 w-full">
             <p className="text-sm font-medium text-white/40 mb-2">
-              관련 게시글
+              관련 게시글 {reports && <span className="text-white/25">{reports.length}건</span>}
             </p>
 
             <ReportList

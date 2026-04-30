@@ -57,30 +57,27 @@ const ReportList = ({
       ))}
 
       {hiddenReports.length > 0 && (
-        <div className="mt-2">
+        <>
           <button
             onClick={() => setShowHidden(!showHidden)}
-            className="text-xs text-white/40 hover:text-white/60 cursor-pointer"
+            className="glass-card rounded-2xl p-5 text-center text-xs text-white/40 hover:text-white/60 transition-colors cursor-pointer"
           >
             {showHidden
               ? "숨겨진 게시글 접기"
               : `숨겨진 게시글 ${hiddenReports.length}개 보기`}
           </button>
 
-          {showHidden && (
-            <div className="flex flex-col gap-3 mt-3">
-              {hiddenReports.map((report) => (
-                <ReportItem
-                  key={report.id}
-                  report={report}
-                  onUpvote={onUpvote}
-                  onDownvote={onDownvote}
-                  dimmed
-                />
-              ))}
-            </div>
-          )}
-        </div>
+          {showHidden &&
+            hiddenReports.map((report) => (
+              <ReportItem
+                key={report.id}
+                report={report}
+                onUpvote={onUpvote}
+                onDownvote={onDownvote}
+                dimmed
+              />
+            ))}
+        </>
       )}
     </div>
   );
