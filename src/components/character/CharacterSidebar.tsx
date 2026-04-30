@@ -19,7 +19,7 @@ const CharacterSidebar = ({
   isSubmitting,
 }: CharacterSidebarProps) => {
   return (
-    <div className="w-72 shrink-0 sticky top-8">
+    <div className="w-full md:w-72 shrink-0 md:sticky md:top-8">
       <p className="text-sm font-medium text-white/40 mb-2">캐릭터 정보</p>
       <div className="flex flex-col gap-3">
         <CharacterCard character={character} />

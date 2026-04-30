@@ -57,7 +57,7 @@ const CharacterDetail = () => {
       <div className="relative flex-1 max-w-5xl mx-auto px-4 py-8 w-full">
         <DetailHeader />
 
-        <div className="flex gap-6 items-start">
+        <div className="flex flex-col md:flex-row gap-6 items-start">
           <CharacterSidebar
             character={character}
             showForm={showForm}
@@ -66,7 +66,7 @@ const CharacterDetail = () => {
             isSubmitting={isSubmitting}
           />
 
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 w-full">
             <p className="text-sm font-medium text-white/40 mb-2">
               관련 게시글
             </p>
