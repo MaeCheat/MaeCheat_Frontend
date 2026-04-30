@@ -58,7 +58,7 @@ const ReportForm = ({ onSubmit, isSubmitting, onCancel }: ReportFormProps) => {
           onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
           placeholder="https://..."
           disabled={isSubmitting}
-          className="flex-1 px-3 py-2 rounded-lg border border-white/10 bg-white/[0.06] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all disabled:opacity-50"
+          className="flex-1 px-3 py-2 rounded-lg border border-white/10 bg-white/[0.06] text-white text-base placeholder:text-white/30 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all disabled:opacity-50"
         />
         <button
           onClick={handleSubmit}

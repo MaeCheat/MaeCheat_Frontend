@@ -48,7 +48,7 @@ const Home = () => {
             onChange={(e) => setNickname(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="캐릭터 닉네임을 입력하세요"
-            className="w-full px-4 md:px-5 py-3 md:py-4 pr-20 md:pr-24 rounded-full border border-white/10 bg-white/[0.06] backdrop-blur-md text-white placeholder:text-white/30 shadow-lg focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all text-sm md:text-base"
+            className="w-full px-4 md:px-5 py-3 md:py-4 pr-20 md:pr-24 rounded-full border border-white/10 bg-white/[0.06] backdrop-blur-md text-white placeholder:text-white/30 shadow-lg focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all text-base"
           />
           <button
             onClick={handleSearch}
