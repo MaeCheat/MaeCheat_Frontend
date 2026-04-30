@@ -1,7 +1,7 @@
 import { useState } from "react";
 import logo from "../../assets/logo.png";
-import { useCharacterSearch } from "../../hooks/useCharacterSearch";
 import Footer from "../../components/common/Footer";
+import { useCharacterSearch } from "../../hooks/useCharacterSearch";
 
 const Home = () => {
   const [nickname, setNickname] = useState("");
@@ -36,7 +36,7 @@ const Home = () => {
           </h1>
         </div>
         <p className="text-white/50 text-xs font-pixel mt-1">
-          메이플스토리 캐릭터 평판 조회
+          메이플스토리 유저 AI 리포트
         </p>
       </div>
 
@@ -60,7 +60,9 @@ const Home = () => {
         </div>
 
         {error && (
-          <p className="mt-4 text-sm text-red-400 text-center">{error.message}</p>
+          <p className="mt-4 text-sm text-red-400 text-center">
+            {error.message}
+          </p>
         )}
       </div>
 
