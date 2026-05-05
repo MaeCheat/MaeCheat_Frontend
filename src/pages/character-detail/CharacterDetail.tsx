@@ -11,7 +11,6 @@ const CharacterDetail = () => {
   const {
     character,
     isCharacterLoading,
-    characterError,
     reports,
     isReportsLoading,
     reportsError,
