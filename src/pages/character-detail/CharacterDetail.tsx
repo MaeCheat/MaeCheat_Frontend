@@ -64,7 +64,7 @@ const CharacterDetail = () => {
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 
       <div className="relative flex-1 max-w-5xl mx-auto px-4 py-8 w-full">
-        <DetailHeader />
+        <DetailHeader onSearchError={(msg) => addToast(msg, "error")} />
 
         <div className="flex flex-col md:flex-row gap-6 items-start">
           <CharacterSidebar
@@ -77,7 +77,10 @@ const CharacterDetail = () => {
 
           <div className="flex-1 min-w-0 w-full">
             <p className="text-sm font-medium text-white/40 mb-2">
-              관련 게시글 {reports && <span className="text-white/25">{reports.length}건</span>}
+              관련 게시글{" "}
+              {reports && (
+                <span className="text-white/25">{reports.length}건</span>
+              )}
             </p>
 
             <ReportList

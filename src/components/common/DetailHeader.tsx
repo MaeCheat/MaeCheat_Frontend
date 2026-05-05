@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
-const DetailHeader = () => {
+interface DetailHeaderProps {
+  onSearchError?: (message: string) => void;
+}
+
+const DetailHeader = ({ onSearchError }: DetailHeaderProps) => {
   const navigate = useNavigate();
 
   return (
@@ -14,7 +18,7 @@ const DetailHeader = () => {
         <span className="font-pixel">MaeCheat</span>
       </button>
 
-      <SearchBar />
+      <SearchBar onSearchError={onSearchError} />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { getCharacterBasic } from "../api/maple-character-api";
 
-export const useCharacterSearch = () => {
+export const useCharacterSearch = (onError?: (message: string) => void) => {
   const navigate = useNavigate();
 
   return useMutation({
@@ -14,8 +14,9 @@ export const useCharacterSearch = () => {
     },
     onError: (error: any) => {
       const message =
-        error.response?.data?.message ?? "캐릭터 검색에 실패했습니다.";
+        error.response?.data?.message ?? "존재하지 않는 캐릭터입니다.";
       error.message = message;
+      onError?.(message);
     },
   });
 };

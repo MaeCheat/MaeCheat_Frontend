@@ -3,11 +3,12 @@ import { useCharacterSearch } from "../../hooks/useCharacterSearch";
 
 interface SearchBarProps {
   placeholder?: string;
+  onSearchError?: (message: string) => void;
 }
 
-const SearchBar = ({ placeholder = "캐릭터 검색" }: SearchBarProps) => {
+const SearchBar = ({ placeholder = "캐릭터 검색", onSearchError }: SearchBarProps) => {
   const [nickname, setNickname] = useState("");
-  const { isPending, mutate } = useCharacterSearch();
+  const { isPending, mutate } = useCharacterSearch(onSearchError);
 
   const handleSearch = () => {
     if (nickname.trim()) mutate({ nickname });
