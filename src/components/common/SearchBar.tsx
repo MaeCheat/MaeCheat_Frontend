@@ -20,7 +20,7 @@ const SearchBar = ({ placeholder = "캐릭터 검색", onSearchError }: SearchBa
         type="text"
         value={nickname}
         onChange={(e) => setNickname(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+        onKeyDown={(e) => e.key === "Enter" && !e.nativeEvent.isComposing && handleSearch()}
         placeholder={placeholder}
         className="w-full px-4 py-2 pr-10 rounded-full border border-white/10 bg-white/[0.06] backdrop-blur-md text-white text-base placeholder:text-white/30 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all"
       />

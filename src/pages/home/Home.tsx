@@ -13,7 +13,7 @@ const Home = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") handleSearch();
+    if (e.key === "Enter" && !e.nativeEvent.isComposing) handleSearch();
   };
 
   return (
