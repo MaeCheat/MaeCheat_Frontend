@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CharacterSidebar from "../../components/character/CharacterSidebar";
 import DetailHeader from "../../components/common/DetailHeader";
@@ -11,6 +12,7 @@ const CharacterDetail = () => {
   const {
     character,
     isCharacterLoading,
+    characterError,
     reports,
     isReportsLoading,
     reportsError,
@@ -21,8 +23,15 @@ const CharacterDetail = () => {
     submitReport,
     isSubmitting,
     toasts,
+    addToast,
     removeToast,
   } = useCharacterDetail();
+
+  useEffect(() => {
+    if (characterError) {
+      addToast("존재하지 않는 캐릭터입니다.", "error");
+    }
+  }, [characterError]);
 
   if (isCharacterLoading) {
     return (

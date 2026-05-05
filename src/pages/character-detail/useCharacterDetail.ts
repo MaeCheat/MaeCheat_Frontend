@@ -11,7 +11,7 @@ export const useCharacterDetail = () => {
   const [showForm, setShowForm] = useState(false);
   const { toasts, addToast, removeToast } = useToast();
 
-  const { data: character, isLoading: isCharacterLoading } =
+  const { data: character, isLoading: isCharacterLoading, error: characterError } =
     useCharacterQuery(nickname);
 
   const { data: reports, isLoading: isReportsLoading, error: reportsError } =
@@ -33,6 +33,7 @@ export const useCharacterDetail = () => {
   return {
     character,
     isCharacterLoading,
+    characterError,
     reports: reports ?? [],
     isReportsLoading,
     reportsError,
@@ -43,6 +44,7 @@ export const useCharacterDetail = () => {
     submitReport,
     isSubmitting,
     toasts,
+    addToast,
     removeToast,
   };
 };
