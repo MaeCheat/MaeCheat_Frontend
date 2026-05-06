@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import Home from "./pages/home/Home";
 import CharacterDetail from "./pages/character-detail/CharacterDetail";
 import Shutdown from "./pages/shutdown/Shutdown";
+import Maintenance from "./pages/maintenance/Maintenance";
 
 const UNLOCK_KEY = import.meta.env.VITE_UNLOCK_KEY || "";
 const SHUTDOWN_ENABLED = import.meta.env.VITE_SHUTDOWN_ENABLED === "true";
+const MAINTENANCE_ENABLED = import.meta.env.VITE_MAINTENANCE_ENABLED === "true";
 const COOKIE_NAME = "maecheat_access";
 
 function getCookie(name: string): string | null {
@@ -21,12 +23,12 @@ function setCookie(name: string, value: string, days: number) {
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [hasAccess, setHasAccess] = useState(() => {
-    if (!SHUTDOWN_ENABLED) return true;
+    if (!SHUTDOWN_ENABLED && !MAINTENANCE_ENABLED) return true;
     return getCookie(COOKIE_NAME) === "granted";
   });
 
   useEffect(() => {
-    if (!SHUTDOWN_ENABLED || !UNLOCK_KEY) return;
+    if ((!SHUTDOWN_ENABLED && !MAINTENANCE_ENABLED) || !UNLOCK_KEY) return;
 
     const key = searchParams.get("unlock");
     if (key === UNLOCK_KEY) {
@@ -39,7 +41,8 @@ function App() {
   }, [searchParams, setSearchParams]);
 
   if (!hasAccess) {
-    return <Shutdown />;
+    if (SHUTDOWN_ENABLED) return <Shutdown />;
+    if (MAINTENANCE_ENABLED) return <Maintenance />;
   }
 
   return (
