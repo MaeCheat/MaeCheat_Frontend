@@ -7,7 +7,11 @@ interface CharacterCardProps {
   isHideRequesting: boolean;
 }
 
-const CharacterCard = ({ character, onRequestHide, isHideRequesting }: CharacterCardProps) => {
+const CharacterCard = ({
+  character,
+  onRequestHide,
+  isHideRequesting,
+}: CharacterCardProps) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [reason, setReason] = useState("");
 
@@ -53,7 +57,7 @@ const CharacterCard = ({ character, onRequestHide, isHideRequesting }: Character
               onClick={() => setShowConfirm(true)}
               className="text-white/25 text-[11px] hover:text-white/40 transition-colors cursor-pointer"
             >
-              본인 캐릭터 숨김 요청
+              게시글 숨김 요청
             </button>
           ) : (
             <div className="flex flex-col gap-2">
@@ -73,7 +77,10 @@ const CharacterCard = ({ character, onRequestHide, isHideRequesting }: Character
                   {isHideRequesting ? "처리 중..." : "숨김 요청"}
                 </button>
                 <button
-                  onClick={() => { setShowConfirm(false); setReason(""); }}
+                  onClick={() => {
+                    setShowConfirm(false);
+                    setReason("");
+                  }}
                   className="px-3 py-1.5 rounded-lg border border-white/10 text-white/40 text-xs hover:text-white/60 transition-colors cursor-pointer"
                 >
                   취소
