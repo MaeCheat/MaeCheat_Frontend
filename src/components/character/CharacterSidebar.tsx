@@ -9,7 +9,7 @@ interface CharacterSidebarProps {
   setShowForm: (show: boolean) => void;
   submitReport: (sourceUrl: string) => void;
   isSubmitting: boolean;
-  onRequestHide: () => void;
+  onRequestHide: (reason: string) => void;
   isHideRequesting: boolean;
 }
 
