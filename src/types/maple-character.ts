@@ -10,4 +10,6 @@ export interface MapleCharacterResponse {
   world_name: string;
   character_guild_name?: string;
   ai_summary?: string;
+  owner_hidden?: boolean;
+  hide_pending?: boolean;
 }

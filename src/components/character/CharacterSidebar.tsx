@@ -9,6 +9,8 @@ interface CharacterSidebarProps {
   setShowForm: (show: boolean) => void;
   submitReport: (sourceUrl: string) => void;
   isSubmitting: boolean;
+  onRequestHide: () => void;
+  isHideRequesting: boolean;
 }
 
 const CharacterSidebar = ({
@@ -17,13 +19,19 @@ const CharacterSidebar = ({
   setShowForm,
   submitReport,
   isSubmitting,
+  onRequestHide,
+  isHideRequesting,
 }: CharacterSidebarProps) => {
   return (
     <div className="w-full md:w-72 shrink-0 md:sticky md:top-8">
       <p className="text-sm font-medium text-white/40 mb-2">캐릭터 정보</p>
       <div className="flex flex-col gap-3">
-        <CharacterCard character={character} />
-        {character.ai_summary && <AiSummary summary={character.ai_summary} />}
+        <CharacterCard
+          character={character}
+          onRequestHide={onRequestHide}
+          isHideRequesting={isHideRequesting}
+        />
+        {character.ai_summary && !character.owner_hidden && <AiSummary summary={character.ai_summary} />}
         <button
           onClick={() => setShowForm(!showForm)}
           className="w-full py-2.5 rounded-xl bg-accent text-white text-sm font-medium hover:bg-accent-hover transition-colors cursor-pointer"

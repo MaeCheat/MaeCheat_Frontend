@@ -9,3 +9,11 @@ export const getCharacterBasic = async ({
   });
   return data;
 };
+
+export const requestHide = async (nickname: string, reason: string) => {
+  const { data } = await axiosInstance.post(
+    `/maple-characters/${encodeURIComponent(nickname)}/hide`,
+    { reason },
+  );
+  return data;
+};

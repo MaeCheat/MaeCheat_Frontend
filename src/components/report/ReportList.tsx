@@ -7,6 +7,7 @@ interface ReportListProps {
   error: Error | null;
   onUpvote: (reportId: number) => void;
   onDownvote: (reportId: number) => void;
+  ownerHidden?: boolean;
 }
 
 const ReportList = ({
@@ -15,6 +16,7 @@ const ReportList = ({
   error,
   onUpvote,
   onDownvote,
+  ownerHidden = false,
 }: ReportListProps) => {
   const [showHidden, setShowHidden] = useState(false);
 
@@ -44,6 +46,20 @@ const ReportList = ({
 
   const visibleReports = reports.filter((r) => !r.hidden);
   const hiddenReports = reports.filter((r) => r.hidden);
+
+  if (ownerHidden) {
+    return (
+      <div className="flex flex-col gap-3">
+        {reports.map((report) => (
+          <div key={report.id} className="glass-card rounded-2xl p-5">
+            <p className="text-sm text-white/40 text-center">
+              본인 요청으로 숨김 처리된 게시글입니다.
+            </p>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-3">

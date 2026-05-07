@@ -20,6 +20,8 @@ const CharacterDetail = () => {
     setShowForm,
     submitReport,
     isSubmitting,
+    requestHide,
+    isHideRequesting,
     toasts,
     addToast,
     removeToast,
@@ -65,6 +67,8 @@ const CharacterDetail = () => {
             setShowForm={setShowForm}
             submitReport={submitReport}
             isSubmitting={isSubmitting}
+            onRequestHide={requestHide}
+            isHideRequesting={isHideRequesting}
           />
 
           <div className="flex-1 min-w-0 w-full">
@@ -81,6 +85,7 @@ const CharacterDetail = () => {
               error={reportsError}
               onUpvote={upvote}
               onDownvote={downvote}
+              ownerHidden={character.owner_hidden}
             />
           </div>
         </div>

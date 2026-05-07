@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useCharacterQuery } from "../../hooks/useCharacterQuery";
+import { useCharacterQuery, useRequestHide } from "../../hooks/useCharacterQuery";
 import { useReportsQuery, useCreateReport, useVote } from "../../hooks/useReports";
 import { useToast } from "../../hooks/useToast";
 
@@ -30,6 +30,12 @@ export const useCharacterDetail = () => {
     (message) => addToast(message, "error"),
   );
 
+  const { mutate: requestHide, isPending: isHideRequesting } = useRequestHide(
+    nickname,
+    () => addToast("숨김 요청이 접수되었습니다.", "success"),
+    (message) => addToast(message, "error"),
+  );
+
   return {
     character,
     isCharacterLoading,
@@ -42,6 +48,8 @@ export const useCharacterDetail = () => {
     setShowForm,
     submitReport,
     isSubmitting,
+    requestHide,
+    isHideRequesting,
     toasts,
     addToast,
     removeToast,
