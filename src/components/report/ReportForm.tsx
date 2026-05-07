@@ -50,7 +50,7 @@ const ReportForm = ({ onSubmit, isSubmitting, onCancel }: ReportFormProps) => {
           {LOADING_STEPS[loadingStep]}
         </div>
       )}
-      <div className="flex gap-2">
+      <div className="flex flex-col gap-2">
         <input
           type="url"
           value={sourceUrl}
@@ -58,12 +58,12 @@ const ReportForm = ({ onSubmit, isSubmitting, onCancel }: ReportFormProps) => {
           onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
           placeholder="https://..."
           disabled={isSubmitting}
-          className="flex-1 px-3 py-2 rounded-lg border border-white/10 bg-white/[0.06] text-white text-base placeholder:text-white/30 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all disabled:opacity-50"
+          className="w-full px-3 py-2 rounded-lg border border-white/10 bg-white/[0.06] text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20 transition-all disabled:opacity-50"
         />
         <button
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="w-16 py-2 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover disabled:opacity-50 transition-colors cursor-pointer disabled:cursor-not-allowed shrink-0 text-center"
+          className="w-full py-2 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accent-hover disabled:opacity-50 transition-colors cursor-pointer disabled:cursor-not-allowed text-center"
         >
           {isSubmitting ? "..." : "등록"}
         </button>
